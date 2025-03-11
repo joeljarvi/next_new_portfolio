@@ -14,8 +14,8 @@ export default {
       fontFamily: {
         souvenir: ["var(--font-souvenirBold)"],
         gemini: ["var(--font-gemini)"],
-        lexend: ["var(--font-lexendSans)"],
-        walsheim: ["var(--font-walsheimUltra)"],
+        super: ["var(--font-superGrotesk)"],
+        tango: ["var(--font-tango)"],
       },
     },
   },

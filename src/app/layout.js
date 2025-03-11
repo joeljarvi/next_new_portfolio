@@ -9,29 +9,29 @@ const souvenirBold = localFont({
   variable: "--font-souvenirBold",
 });
 
-const walsheimUltra = localFont({
-  src: "./gt-walsheim-ultra-bold.woff",
-  display: "swap",
-  variable: "--font-walsheimUltra",
-});
-
 const gemini = localFont({
   src: "./Gemini-Regular.woff",
   display: "swap",
   variable: "--font-gemini",
 });
 
-const lexendSans = Lexend({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-lexendSans",
+const superGrotesk = localFont({
+  src: "./SuperGroteskWeb W03 Regular.woff",
+  display: "swap",
+  variable: "--font-superGrotesk",
+});
+
+const tango = localFont({
+  src: "./TangoEF.woff",
+  display: "swap",
+  variable: "--font-tango",
 });
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${souvenirBold.variable} ${gemini.variable} ${lexendSans.variable} ${walsheimUltra.variable}`}
+      className={`${souvenirBold.variable} ${gemini.variable} ${superGrotesk.variable} ${tango.variable}`}
     >
       <PortfolioContext>
         <body>{children}</body>

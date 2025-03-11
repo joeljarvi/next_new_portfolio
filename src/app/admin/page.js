@@ -26,7 +26,6 @@ export default function Admin() {
     id: Date.now(),
   });
 
-  // Handle login
   function handleLogin() {
     if (
       credentials.username === inputUsername &&
@@ -47,13 +46,11 @@ export default function Admin() {
     }));
   }
 
-  // Add a new project to the context and localStorage
   function addProject(event) {
     event.preventDefault();
     const updatedProjects = [...projects, newProjectItem];
-    setProjects(updatedProjects); // Update the projects state in the context
+    setProjects(updatedProjects);
 
-    // Reset the form after adding the project
     setNewProjectItem({
       title: "",
       description: "",
@@ -70,22 +67,22 @@ export default function Admin() {
       <Header />
       <div className="min-h-screen grid grid-cols-6 gap-x-4">
         {!loggedIn && (
-          <form className="col-start-2 col-span-4 flex flex-col justify-center items-stretch gap-2">
+          <form className="col-start-3 col-span-2 flex flex-col justify-center items-stretch gap-2">
             <input
               type="text"
               placeholder="Username"
               onChange={(e) => setInputUsername(e.target.value)}
-              className="input input-bordered font-walsheim text-xl rounded-xl border-2 border-neutral"
+              className="input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
             />
             <input
               type="password"
               placeholder="Password"
               onChange={(e) => setInputPassword(e.target.value)}
-              className="input input-bordered rounded-xl border-2 border-neutral font-walsheim text-xl"
+              className="input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
             />
             <button
               onClick={handleLogin}
-              className="btn rounded-xl w-1/5 font-walsheim text-xl"
+              className="btn rounded-none w-1/5 font-super text-xl"
             >
               Log In
             </button>
@@ -93,22 +90,18 @@ export default function Admin() {
         )}
 
         {loggedIn && (
-          <div className="w-screen min-h-screen px-8 pt-10">
+          <div className="w-screen min-h-screen px-4 pt-10">
             <form
-              className="pt-16 grid grid-cols-6 gap-4"
+              className="pt-20 grid grid-cols-6 gap-4"
               onSubmit={addProject}
             >
-              <label className="col-start-1 col-span-6 row-start-1 text-4xl font-souvenir pb-2">
-                Add new project
-              </label>
-
               <input
                 type="text"
                 name="title"
                 placeholder="title"
                 value={newProjectItem.title}
                 onChange={handleInputChange}
-                className="col-start-1 col-span-2 input input-bordered rounded-xl border-2 border-neutral font-walsheim text-xl"
+                className="col-start-1 col-span-2 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
 
               <input
@@ -117,23 +110,22 @@ export default function Admin() {
                 placeholder="tech stack"
                 value={newProjectItem.stack}
                 onChange={handleInputChange}
-                className="col-start-3 col-span-3 input input-bordered rounded-xl border-2 border-neutral font-walsheim text-xl"
+                className="col-start-3 col-span-3 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
-              <input
-                type="text"
-                name="year"
-                placeholder="year"
-                value={newProjectItem.year}
-                onChange={handleInputChange}
-                className="col-start-6 col-span-1 input input-bordered rounded-xl border-2 border-neutral font-walsheim text-xl"
-              />
+              <button
+                type="submit"
+                className="btn rounded-none font-super text-xl"
+              >
+                Add project
+              </button>
+
               <input
                 type="text"
                 name="link"
                 placeholder="project link"
                 value={newProjectItem.link}
                 onChange={handleInputChange}
-                className="col-start-1 col-span-5 input input-bordered rounded-xl border-2 border-neutral font-walsheim text-xl"
+                className="col-start-1 col-span-2 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
               <input
                 type="text"
@@ -141,21 +133,33 @@ export default function Admin() {
                 placeholder="img"
                 value={newProjectItem.image}
                 onChange={handleInputChange}
-                className="col-start-6 col-span-1 input input-bordered rounded-xl border-2 border-neutral font-walsheim text-xl"
+                className="col-start-3 col-span-3 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
+              />
+              <input
+                type="text"
+                name="year"
+                placeholder="year"
+                value={newProjectItem.year}
+                onChange={handleInputChange}
+                className="col-start-6 col-span-1 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
 
-              <input
+              <textarea
                 type="text"
                 name="description"
                 placeholder="description"
                 value={newProjectItem.description}
                 onChange={handleInputChange}
-                className="col-start-1 col-span-5 input input-bordered rounded-xl border-2 border-neutral font-walsheim text-xl"
+                className="col-start-1 col-span-4 input placeholder border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
+              ></textarea>
+              <input
+                type="text"
+                name="category"
+                placeholder="category"
+                value={newProjectItem.image}
+                onChange={handleInputChange}
+                className="col-start-5 col-span-2 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
-
-              <button type="submit" className="btn rounded-xl">
-                Add project
-              </button>
             </form>
 
             <div className="mt-4 flex flex-col items-start justify-center ">
@@ -164,16 +168,16 @@ export default function Admin() {
                   key={project.id}
                   className="w-full grid grid-cols-6 grid-rows-4 gap-4 bg-primary h-auto pt-4 px-4 pb-4 rounded-xl"
                 >
-                  <h2 className="col-start-1 row-start-1 font-sans font-bold text-sm">
+                  <h2 className="col-start-1 row-start-1 font-super">
                     {project.title}
                   </h2>
-                  <p className="col-start-1 row-start-2 row-span-2 col-span-5 font-souvenir text-3xl leading-7">
+                  <p className="col-start-1 row-start-2 row-span-2 col-span-5 font-super text-3xl leading-7">
                     {project.description}
                   </p>
-                  <p className="font-sans font-bold text-sm col-start-3 col-span-2 px-4">
+                  <p className="font-super  col-start-3 col-span-2 px-4">
                     {project.stack}
                   </p>
-                  <p className="font-sans font-bold text-sm col-start-6 col-span-1 row-start-1 row-span-1 text-right">
+                  <p className="font-super col-start-6 col-span-1 row-start-1 row-span-1 text-right">
                     {project.year}
                   </p>
                   <div className="col-start-1 col-span-1 row-start-4 row-span-1 flex items-center">

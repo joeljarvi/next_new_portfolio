@@ -22,7 +22,7 @@ export default function DarkmodeSwitch() {
           className="swap-on text-base-content fill-current font-souvenir text-2xl"
           onClick={toggleTheme}
         >
-          <MoonIcon width={30} height={30} />
+          <MoonIcon width={20} height={20} />
         </span>
 
         {/* moon icon */}
@@ -31,7 +31,7 @@ export default function DarkmodeSwitch() {
           className="flex flex-row items-center justify-start gap-x-2 swap-off text-base-content fill-current font-souvenir text-2xl"
           onClick={toggleTheme}
         >
-          <SunIcon width={30} height={30} />
+          <SunIcon width={20} height={20} />
         </span>
       </label>
     </div>
