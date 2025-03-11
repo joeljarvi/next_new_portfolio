@@ -1,6 +1,6 @@
 import "./globals.css";
 import localFont from "next/font/local";
-import { Lexend } from "next/font/google";
+
 import PortfolioContext from "./context/PortfolioContext";
 
 const souvenirBold = localFont({

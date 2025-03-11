@@ -1,12 +1,10 @@
 "use client";
-
+import { useContext, useState } from "react";
 import Header from "../components/Header";
 import { MyPortfolioContext } from "../context/PortfolioContext";
-import { useContext, useState } from "react";
-import Image from "next/image";
 
 export default function Admin() {
-  const { projects, setProjects } = useContext(MyPortfolioContext); // Extract context values
+  const { projects, setProjects } = useContext(MyPortfolioContext);
   const [loggedIn, setLoggedIn] = useState(false);
   const [credentials, setCredentials] = useState({
     username: "joel",
@@ -23,7 +21,8 @@ export default function Admin() {
     stack: "",
     link: "",
     image: "",
-    id: Date.now(),
+    category: "", // Fixed to 'category'
+    id: Date.now(), // Unique ID for each project
   });
 
   function handleLogin() {
@@ -46,11 +45,18 @@ export default function Admin() {
     }));
   }
 
+  // Add project and update both context and localStorage
   function addProject(event) {
     event.preventDefault();
-    const updatedProjects = [...projects, newProjectItem];
-    setProjects(updatedProjects);
 
+    // Create a new project object with the correct structure
+    const updatedProjects = [
+      ...projects,
+      { ...newProjectItem, id: Date.now() },
+    ];
+    setProjects(updatedProjects); // Update context state with new project
+
+    // Reset form after submitting
     setNewProjectItem({
       title: "",
       description: "",
@@ -58,6 +64,7 @@ export default function Admin() {
       stack: "",
       link: "",
       image: "",
+      category: "",
       id: Date.now(),
     });
   }
@@ -92,132 +99,73 @@ export default function Admin() {
         {loggedIn && (
           <div className="w-screen min-h-screen px-4 pt-10">
             <form
-              className="pt-20 grid grid-cols-6 gap-4"
+              className="pt-16 grid grid-cols-6 gap-4"
               onSubmit={addProject}
             >
               <input
                 type="text"
                 name="title"
-                placeholder="title"
+                placeholder="Title"
                 value={newProjectItem.title}
                 onChange={handleInputChange}
                 className="col-start-1 col-span-2 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
-
               <input
                 type="text"
-                name="stack"
-                placeholder="tech stack"
-                value={newProjectItem.stack}
+                name="category"
+                placeholder="Category"
+                value={newProjectItem.category} // Fixed from 'categories'
                 onChange={handleInputChange}
                 className="col-start-3 col-span-3 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
               <button
                 type="submit"
-                className="btn rounded-none font-super text-xl"
+                className="col-start-6 btn rounded-none font-super text-xl"
               >
-                Add project
+                Add Project
               </button>
 
               <input
                 type="text"
                 name="link"
-                placeholder="project link"
+                placeholder="Project Link"
                 value={newProjectItem.link}
                 onChange={handleInputChange}
                 className="col-start-1 col-span-2 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
               <input
                 type="text"
-                name="image"
-                placeholder="img"
-                value={newProjectItem.image}
+                name="stack"
+                placeholder="Tech Stack"
+                value={newProjectItem.stack}
                 onChange={handleInputChange}
                 className="col-start-3 col-span-3 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
               <input
                 type="text"
                 name="year"
-                placeholder="year"
+                placeholder="Year"
                 value={newProjectItem.year}
                 onChange={handleInputChange}
                 className="col-start-6 col-span-1 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
-
-              <textarea
-                type="text"
-                name="description"
-                placeholder="description"
-                value={newProjectItem.description}
-                onChange={handleInputChange}
-                className="col-start-1 col-span-4 input placeholder border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
-              ></textarea>
               <input
                 type="text"
-                name="category"
-                placeholder="category"
+                name="image"
+                placeholder="Image URL"
                 value={newProjectItem.image}
                 onChange={handleInputChange}
-                className="col-start-5 col-span-2 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
+                className="col-start-1 col-span-2 input border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
+              />
+
+              <textarea
+                name="description"
+                placeholder="Description"
+                value={newProjectItem.description}
+                onChange={handleInputChange}
+                className="col-start-3 col-span-4 input placeholder border-b-2 border-b-black border-l-0 border-t-0 border-r-0 rounded-none font-super"
               />
             </form>
-
-            <div className="mt-4 flex flex-col items-start justify-center ">
-              {projects.map((project) => (
-                <div
-                  key={project.id}
-                  className="w-full grid grid-cols-6 grid-rows-4 gap-4 bg-primary h-auto pt-4 px-4 pb-4 rounded-xl"
-                >
-                  <h2 className="col-start-1 row-start-1 font-super">
-                    {project.title}
-                  </h2>
-                  <p className="col-start-1 row-start-2 row-span-2 col-span-5 font-super text-3xl leading-7">
-                    {project.description}
-                  </p>
-                  <p className="font-super  col-start-3 col-span-2 px-4">
-                    {project.stack}
-                  </p>
-                  <p className="font-super col-start-6 col-span-1 row-start-1 row-span-1 text-right">
-                    {project.year}
-                  </p>
-                  <div className="col-start-1 col-span-1 row-start-4 row-span-1 flex items-center">
-                    <a href={project.link}>
-                      <button className="btn rounded-full">See website</button>
-                    </a>
-                  </div>
-
-                  <img
-                    src={project.image}
-                    width="1920"
-                    height="1080"
-                    className="col-start-1 col-span-2 row-start-5 row-span-2 rounded-sm"
-                    alt="blablabla"
-                  />
-                  <img
-                    src={project.image}
-                    width="1920"
-                    height="1080"
-                    className="col-start-3 col-span-2 row-start-5 row-span-2 rounded-sm"
-                    alt="blablabla"
-                  />
-                  <img
-                    src={project.image}
-                    width="1920"
-                    height="1080"
-                    className="col-start-5 col-span-2 row-start-5 row-span-2 rounded-sm"
-                    alt="blablabla"
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="w-full flex items-end justify-end pt-8">
-              <button
-                onClick={() => setLoggedIn(false)}
-                className="btn rounded-xl"
-              >
-                Log out
-              </button>
-            </div>
           </div>
         )}
       </div>
