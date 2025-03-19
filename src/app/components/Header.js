@@ -7,7 +7,7 @@ export default function Header() {
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <header>
-      <div className="fixed left-0 top-0 w-screen z-20 bg-white">
+      <div className="fixed left-0 top-0 w-screen z-20 bg-white border-b border-neutral pb-2">
         <nav
           id="navbar-top"
           className="flex flex-col items-start justify-start z-20"
@@ -58,7 +58,7 @@ export default function Header() {
       <div className="fixed left-0 bottom-0 w-screen z-20">
         <nav
           id="desktop-floating footer"
-          className="hidden lg:flex flex-col items-start justify-baseline z-20 pb-2 bg-white"
+          className="hidden lg:flex flex-col items-start justify-baseline  z-20 pb-2"
         >
           <span className="grid grid-cols-6 items-baseline gap-x-4 px-4 pt-3 pb-0 w-full">
             {loggedIn ? (
@@ -103,7 +103,7 @@ export default function Header() {
         </nav>
         <nav
           id="mobile-navbar-bottom"
-          className="flex flex-col items-start justify-baseline z-20 lg:hidden bg-white"
+          className="flex flex-col items-start justify-baseline z-20 lg:hidden"
         >
           <span className="grid grid-cols-3 gap-x-4 px-4 pt-2 pb-2 w-screen">
             <h2 className="col-start-1 font-super text-xl">Projects</h2>
