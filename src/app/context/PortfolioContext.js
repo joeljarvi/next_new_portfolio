@@ -9,12 +9,33 @@ export default function PortfolioContext({ children }) {
       id: Date.now(),
       title: "DOGINDEX",
       description: "A site dedicated to dogs, everyone loves dogs",
-      category: ["Development", "Design"],
+      category: ["Development", ", ", "Design"],
       stack: ["Next.js", "React", "Dog API", "tailwindcss"],
       year: 2025,
       link: "https://chas-news-app.vercel.app/",
-      image:
-        "https://www.assuropoil.fr/wp-content/uploads/2023/07/avoir-un-chat-sante.jpg",
+      image1: "",
+
+      image2: "",
+      image3: "",
+
+      button: "See Website",
+    },
+    {
+      id: Date.now(),
+      title: "elinorsilow.com",
+      description:
+        "Website design for mixed media artist Elinor Silow. Designed and developed using Elementor Pro and Wordpress",
+      category: ["Design", ", ", "Digital"],
+      stack: ["Elementor Pro", "Wordpress"],
+      year: 2024,
+      link: "https://wwww.elinorsilow.com/",
+      image1:
+        "https://res.cloudinary.com/duwvqjipi/image/upload/v1742379756/Ska%CC%88rmavbild_2025-03-11_kl._15.56.23_w40lin.png",
+      image2:
+        "https://res.cloudinary.com/duwvqjipi/image/upload/v1742379754/Ska%CC%88rmavbild_2025-03-11_kl._15.55.57_jdizod.png",
+      image3:
+        "https://res.cloudinary.com/duwvqjipi/image/upload/v1742379758/Ska%CC%88rmavbild_2025-03-11_kl._15.54.38_b9myok.png",
+      button: "See Website",
     },
   ]);
 

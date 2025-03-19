@@ -33,9 +33,9 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${souvenirBold.variable} ${gemini.variable} ${superGrotesk.variable} ${tango.variable}`}
     >
-      <PortfolioContext>
-        <body>{children}</body>
-      </PortfolioContext>
+      <body>
+        <PortfolioContext>{children}</PortfolioContext>
+      </body>
     </html>
   );
 }
