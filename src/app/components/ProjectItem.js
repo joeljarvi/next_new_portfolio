@@ -15,7 +15,7 @@ export default function ProjectItem({ projectIndex }) {
 
   return (
     <div>
-      <div className="-mt-2 lg:-mt-0 mb-2 w-full h-2/3 grid grid-cols-6 gap-4 px-4 pt-4 pb-16 bg-base-200">
+      <div className="-mt-2 lg:-mt-2 mb-0 w-full h-2/3 grid grid-cols-6 gap-4 px-4 pt-4 pb-16 bg-base-200">
         <p className="col-start-1 col-span-6 lg:col-span-3 font-super text-xl lg:text-2xl leading-tight  ">
           {project.description}
         </p>
